@@ -22,3 +22,6 @@ This is my personal notes on Higher Algebra.
 
 #include "chapters/chapter_03.typ"
 
+#include "chapters/chapter_04.typ"
+
+#include "chapters/chapter_05.typ"

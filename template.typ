@@ -421,7 +421,6 @@
 #let dg = $"dg"$
 
 #let Hom = "Hom"
-#let Fun = "Fun"
 #let Map = "Map"
 #let Der = "Der"
 #let Aut = "Aut"
@@ -437,6 +436,8 @@
 #let CH = "CH"
 #let yo = "よ"
 
+#let Fun = $bold(sans("Fun"))$
+#let Exc = $bold(sans("Exc"))$
 #let Set = $bold(sans("Set"))$
 #let PSh = $bold(sans("PSh"))$
 #let Sh = $bold(sans("Sh"))$
@@ -459,6 +460,9 @@
 #let Sp = $bold(sans("Sp"))$
 #let Ch = $bold(sans("Ch"))$
 #let dgCat = $bold(sans("dgCat"))$
+#let Kcat = $bold(sans("K"))$
+#let Dcat = $bold(sans("D"))$
+#let Fin = $bold(sans("Fin"))$
 
 #let cat(name) = $bold(sans(name))$
 

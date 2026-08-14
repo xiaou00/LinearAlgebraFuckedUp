@@ -7,7 +7,7 @@
   doc,
 )
 
-= Homological Algebra
+= Homological Algebra Reviewed
 
 == $t$-Structures
 
@@ -180,7 +180,7 @@ Thus mapping spaces in $C^(suit.heart)$ are discrete, so this $oo$-category is
 the nerve of its homotopy category. The category $h C^(suit.heart)$ is abelian;
 kernels and cokernels are obtained by applying $pi_0$ to fibers and cofibers.
 Our indexing is homological: the object above is denoted $pi_n (x)$ rather
-than $H_n (x)$.
+than $"H"_n (x)$.
 
 === General Localizations
 
@@ -574,7 +574,7 @@ $"DK" (a[1])_n tilde.eq a^(⊕ n)$.
   If $x$ is a simplicial abelian group, then its underlying simplicial set is
   a Kan complex and
 
-  $ pi_n (x) tilde.eq H_n (N x) $
+  $ pi_n (x) tilde.eq "H"_n (N x) $
 
   Thus simplicial homotopy groups become ordinary homology groups under
   normalization.
