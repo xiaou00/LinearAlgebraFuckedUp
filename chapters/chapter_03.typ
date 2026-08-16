@@ -52,8 +52,8 @@ To make this precise, we could proceed in several steps:
 
    is right-lax monoidal. Concretely, it comes with coherent maps
 
-   $ tau_(>=0) m ⊗ tau_(>=0) n
-     ->tau_(>=0) (m ⊗ n) $
+   $ tau_(>=0) m times.o tau_(>=0) n
+     ->tau_(>=0) (m times.o n) $
 
    Applying it to every mapping complex preserves units and composition.
    Thus $Ch(A)$ is enriched over nonnegatively graded chain complexes.
@@ -327,8 +327,7 @@ $oo$-category.
   generates a dg-category from a simplicial set.
 
   In particular, a quasi-equivalence of dg-categories induces an equivalence
-  of $oo$-categories, and a fibration induces a categorical fibration of
-  dg-nerves.
+  of $oo$-categories, and a fibration induces an isofibration of dg-nerves.
 ]
 
 The left adjoint is characterized by natural bijections
@@ -354,7 +353,7 @@ by applying normalized chains to simplicial rigidification.
   complex of $D$. Degreewise surjectivity lifts this element to $C$; the same
   formula used in the inner-horn proof then supplies the remaining face.
   Thus $Ner^dg (F)$ is an inner fibration. The isofibration condition on
-  $h F$ lifts equivalences and makes it a categorical fibration.
+  $h F$ lifts equivalences and makes it an isofibration.
 
   If $F$ is also a weak equivalence, the mapping-space formula above turns
   each quasi-isomorphism of mapping complexes into a weak homotopy
@@ -608,13 +607,13 @@ depends on the chosen representative of $x$.
 
   If $p->m$ is a $K$-projective resolution and $n$ is another complex, then
 
-  $ m ⊗_R^"L" n tilde.eq p ⊗_R n,
+  $ m times.o_R^"L" n tilde.eq p times.o_R n,
     quad "RHom"_R (m,n) tilde.eq underline(Hom)_R (p,n) $
 
   When $m,n$ are modules placed in degree zero, our homological convention
   gives
 
-  $ "H"_r (m ⊗_R^"L" n) tilde.eq Tor_r^R (m,n),
+  $ "H"_r (m times.o_R^"L" n) tilde.eq Tor_r^R (m,n),
     quad "H"_(-r) ("RHom"_R (m,n)) tilde.eq Ext_R^r (m,n) $
 ]
 

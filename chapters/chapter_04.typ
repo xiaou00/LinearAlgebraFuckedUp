@@ -773,7 +773,7 @@ spaces and deloopings into the following intrinsic definition.
   - $ZZ$ is the tensor unit in $Ab$, while $SS$ is the smash-product unit in
     $Sp$
 
-    $ ZZ ⊗ a tilde.eq a,
+    $ ZZ times.o a tilde.eq a,
       quad SS smash x tilde.eq x $
 
   - $ZZ$ is the free rank-one generator of $Ab$, while $SS$ is a compact
@@ -1188,13 +1188,13 @@ $ pi_n Map_C^Sp (x,y) tilde.eq Ext_C^(-n) (x,y) $
 
 #remark(title:[The Presentable Case])[
   If $C$ is presentable and stable, it is canonically tensored over $Sp$.
-  For $e in Sp$ and $x in C$, there is an object $e ⊗ x in C$
+  For $e in Sp$ and $x in C$, there is an object $e times.o x in C$
   characterized by the tensor--Hom adjunction
 
-  $ Map_C^Sp (e ⊗ x,y)
+  $ Map_C^Sp (e times.o x,y)
     tilde.eq Map_Sp^Sp (e,Map_C^Sp (x,y)) $
 
-  The functor $e mapsto e ⊗ x$ preserves colimits and sends
+  The functor $e mapsto e times.o x$ preserves colimits and sends
   $SS$ to $x$. For $C=Sp$, the mapping spectrum is the usual function
   spectrum $F(x,y)$, and
 
@@ -1351,7 +1351,7 @@ behave like derived tensor products.
   [$Map^Sp (x,E)$],
   [$Ext_R^q (m,n)$],
   [$E^q (x)$],
-  [$m ⊗_R^"L" n$],
+  [$m times.o_R^"L" n$],
   [$x smash E$],
   [$Tor_q^R (m,n)$],
   [$E_q (x)$],

@@ -226,9 +226,9 @@ than an identification of the two settings.
   text(weight: "semibold", fill: ink)[pointed spaces],
   [$0$],
   [$ast$],
-  [$m plus n$],
+  [$m plus.o n$],
   [$x wedge y$],
-  [$m ⊗_R n$],
+  [$m times.o_R n$],
   [$x smash y$],
   [$Hom_R (m, n)$],
   [$Map_* (x, y)$],
@@ -362,13 +362,13 @@ According to the "$n$-loop = pointed map from $n$-sphere" principle, we have
 Let $R$ be a commutative ring. For a fixed $R$-module $ell$, the ordinary
 tensor--Hom adjunction is
 
-$ Hom_R (ell ⊗_R m, n) tilde.eq Hom_R (m, Hom_R (ell, n)). $
+$ Hom_R (ell times.o_R m, n) tilde.eq Hom_R (m, Hom_R (ell, n)). $
 
 Thus the pointed-space dictionary extends from individual operations to
 adjoint functors:
 
 #align(center)[
-  $k smash (-) quad ↔ quad ell ⊗_R (-)$ \
+  $k smash (-) quad ↔ quad ell times.o_R (-)$ \
   $Map_* (k, -) quad ↔ quad Hom_R (ell, -)$.
 ]
 
@@ -377,7 +377,7 @@ algebraic analogue appears in the derived category $D(R)$, where the shifted
 unit $R[1]$ satisfies
 
 #align(center)[
-  $R[1] ⊗^"L"_R m tilde.eq m[1]$ \
+  $R[1] times.o^"L"_R m tilde.eq m[1]$ \
   $"RHom"_R (R[1], n) tilde.eq n[-1]$.
 ]
 

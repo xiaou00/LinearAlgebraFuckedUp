@@ -422,6 +422,7 @@
 
 #let Hom = "Hom"
 #let Map = "Map"
+#let Mul = "Mul"
 #let Der = "Der"
 #let Aut = "Aut"
 #let End = "End"
@@ -432,12 +433,16 @@
 #let Tor = "Tor"
 #let op = "op"
 #let pr = "pr"
+#let ev = "ev"
 #let Spf = "Spf"
 #let CH = "CH"
 #let yo = "よ"
 
 #let Fun = $bold(sans("Fun"))$
+#let BiFun = $bold(sans("BiFun"))$
 #let Exc = $bold(sans("Exc"))$
+#let Act = $bold(sans("Act"))$
+#let Env = $bold(sans("Env"))$
 #let Set = $bold(sans("Set"))$
 #let PSh = $bold(sans("PSh"))$
 #let Sh = $bold(sans("Sh"))$
@@ -463,8 +468,14 @@
 #let Kcat = $bold(sans("K"))$
 #let Dcat = $bold(sans("D"))$
 #let Fin = $bold(sans("Fin"))$
+#let Op = $bold(sans("Op"))$
+#let POp = $bold(sans("POp"))$
+#let Comm = $bold(sans("Comm"))$
+#let Alg = $bold(sans("Alg"))$
+#let CAlg = $bold(sans("CAlg"))$
 
 #let cat(name) = $bold(sans(name))$
 
 #let fork = $\u{22D4}$
 #let lfork = math.attach(box(width: 0pt)[], t: $fork$)
+#let odot = $\u{2299}$
