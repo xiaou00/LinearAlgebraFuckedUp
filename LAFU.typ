@@ -20,6 +20,8 @@ Most of the content is based on the great work of #emph[Jacob Lurie, Higher Alge
 
 #include "chapters/chapter_00.typ"
 
+#part[Stability]
+
 #include "chapters/chapter_01.typ"
 
 #include "chapters/chapter_02.typ"
@@ -28,6 +30,11 @@ Most of the content is based on the great work of #emph[Jacob Lurie, Higher Alge
 
 #include "chapters/chapter_04.typ"
 
+#part[Operad Theory]
+
 #include "chapters/chapter_05.typ"
 
 #include "chapters/chapter_06.typ"
+
+#include "chapters/chapter_07.typ"
+

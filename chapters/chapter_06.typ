@@ -853,3 +853,245 @@ each variable.
   Equivalently, the symmetric monoidal subcategory of unary operads is
   symmetric monoidally equivalent to $Cat_oo^times$.
 ]
+
+== Day Convolution
+
+The pointwise tensor product on a functor category uses only the monoidal
+structure of the target and ignores that of the source. Day convolution does
+the opposite: it extends the tensor product of the source to functors by
+freely summing over every way an object can be assembled as a tensor product.
+
+=== A First Example: Graded Objects
+
+#example(title:[The Cauchy Product])[
+  Regard $NN$ as a discrete symmetric monoidal category under addition, and
+  let $cal(D)=Ab$. A functor $a:NN->Ab$ is a nonnegatively graded abelian
+  group ${a_n}_(n>=0)$. Day convolution is
+
+  $
+    (a ast.o b)_n
+    tilde.eq ⊕_(i+j=n) a_i times.o b_j
+  $
+
+  Its unit is $ZZ$ in degree $0$ and $0$ in every positive degree. Thus Day
+  convolution is exactly the Cauchy product of graded objects, analogous to
+  multiplication of generating series:
+
+  $
+    (sum_(i>=0) a_i t^i)(sum_(j>=0) b_j t^j)
+    =sum_(n>=0)(⊕_(i+j=n) a_i times.o b_j)t^n
+  $
+]
+
+The summands indexed by $i+j=n$ are the simplest instance of the general
+rule: sum over all morphisms $c_0 times.o c_1->c$.
+
+=== Definition and Basic Properties
+
+#definition(title:[Day Convolution])[
+  Let $cal(C)$ be a small monoidal $oo$-category and let $cal(D)$ admit small
+  colimits. For $f,g:cal(C)->cal(D)$, their #emph[Day convolution] is
+
+  $
+    f ast.o g
+    :=Lan_(times.o_cal(C))
+      (times.o_cal(D) compose (f times g))
+  $
+
+  whenever this left Kan extension exists. Pointwise,
+
+  $
+    (f ast.o g)(c)
+    tilde.eq colim_(c_0 times.o c_1->c)
+      f(c_0) times.o g(c_1)
+  $
+
+  where the indexing $oo$-category has objects
+  $(c_0,c_1,u:c_0 times.o c_1->c)$.
+]
+
+#theorem(title:[The Day Monoidal Structure])[
+  Suppose the tensor product of $cal(D)$ preserves small colimits separately
+  in each variable. Then Day convolution makes
+  $Fun(cal(C),cal(D))$ monoidal. If $cal(C)$ and $cal(D)$ are symmetric
+  monoidal, this structure is symmetric monoidal. It preserves colimits
+  separately in both functor variables.
+
+  Its unit is the functor
+
+  $
+    1_"Day" (c)
+    tilde.eq Map_cal(C) (1_cal(C),c) odot 1_cal(D)
+  $
+
+  where $k odot d$ denotes the tensoring, or copower, of an object $d$ by a
+  space $k$.
+]
+
+#proofsketch[
+  Both parenthesizations are iterated colimits over threefold tensor
+  factorizations. Fubini and the associators identify them coherently; the
+  same argument gives the unit and symmetry. Colimit preservation lets the
+  tensor product of $cal(D)$ pass through the Kan extensions.
+]
+
+#corollary(title:[Algebra Objects])[
+  There is a canonical equivalence
+
+  $
+    cat("CAlg")(Fun(cal(C),cal(D))_"Day")
+    tilde.eq Fun_"lax"^times.o (cal(C),cal(D))
+  $
+
+  Thus commutative algebras for Day convolution are lax symmetric monoidal
+  functors. Replacing commutative by associative gives lax monoidal functors.
+]
+
+=== The Coend Viewpoint
+
+Assume that $cal(D)$ is tensored over spaces. The comma-category formula for
+the Kan extension can be rewritten as the coend
+
+$
+  (f ast.o g)(c)
+  tilde.eq
+  integral^(c_0,c_1 in cal(C))
+    Map_cal(C) (c_0 times.o c_1,c)
+      odot (f(c_0) times.o g(c_1))
+$
+
+The mapping space supplies the #emph[weight]: every map
+$c_0 times.o c_1->c$ contributes a copy of
+$f(c_0) times.o g(c_1)$, while the coend imposes functorial identifications
+in $c_0$ and $c_1$. This is the enriched form of the colimit in the
+definition.
+
+#remark(title:[Representables])[
+  Put
+
+  $ h^a (c):=Map_cal(C) (a,c) odot 1_cal(D) $
+
+  The co-Yoneda lemma gives
+
+  $ h^a ast.o h^b tilde.eq h^(a times.o b) $
+
+  Thus the covariant Yoneda embedding
+  $cal(C)^op->Fun(cal(C),cal(D))$ is strong monoidal after extending scalars
+  from spaces to $cal(D)$. Conceptually, Day convolution is the
+  colimit-preserving extension of the tensor product on representables.
+]
+
+#remark(title:[Closed Structure])[
+  If $cal(D)$ is closed symmetric monoidal and admits the relevant limits,
+  Day convolution is closed. Its internal Hom can be written as the end
+
+  $
+    [f,g]_"Day" (c)
+    tilde.eq integral_(x in cal(C))
+      [f(x),g(c times.o x)]_cal(D)
+  $
+
+  The coend formula for $ast.o$ and this end formula are adjoint manifestations
+  of the same Kan-extension construction.
+]
+
+=== Operadic Generalization
+
+The preceding construction uses only one binary tensor product. Norms package
+the same idea for every operation of an arbitrary $oo$-operad
+$cal(O)^times.o$ simultaneously.
+
+#definition(title:[Norm])[
+  Let $p:cal(C)^times.o->cal(O)^times.o$ be a coCartesian fibration of
+  $oo$-operads and let $cal(E)^times.o->cal(C)^times.o$ be a fibration. A
+  #emph[norm of $cal(E)$ along $p$] is a fibration
+  $cal(N)^times.o->cal(O)^times.o$ together with
+
+  $
+    alpha:cal(N)^times.o times_(cal(O)^times.o) cal(C)^times.o
+      ->cal(E)^times.o
+  $
+
+  such that, for every $cal(P)^times.o->cal(O)^times.o$, composition with
+  $alpha$ induces an equivalence
+
+  $
+    Alg_(cal(P)\/cal(O)) (cal(N))
+    tilde.eq
+    Alg_((cal(P) times_cal(O) cal(C))\/cal(C)) (cal(E))
+  $
+
+  We write it as $Nm_(cal(C)\/cal(O)) (cal(E))^times.o$.
+]
+
+#theorem(title:[Existence of Norms])[
+  Norms exist and are unique up to a contractible space of choices. In other
+  words, the norm is the operadic right adjoint to base change along $p$.
+]
+
+#remark(title:[The Technical Point])[
+  A naive functor category over $cal(O)^times.o$ need not satisfy the
+  operadic Segal condition. The norm is constructed as an internal Hom of
+  marked preoperads and then restricted to simplices which preserve the
+  required inert morphisms. Establishing fibrancy of this marked object is
+  the role of the long horn-filling argument in the source.
+]
+
+#definition(title:[The Functor Operad])[
+  Given an $cal(O)$-monoidal $cal(C)^times.o$ and a fibration
+  $cal(D)^times.o->cal(O)^times.o$, define
+
+  $
+    Fun^(cal(O))(cal(C),cal(D))^times.o
+    :=Nm_(cal(C)\/cal(O))
+      (cal(C) times_cal(O) cal(D))^times.o
+  $
+
+  Its fiber at a color $x$ is
+
+  $
+    Fun^(cal(O))(cal(C),cal(D))_x
+    tilde.eq Fun(cal(C)_x,cal(D)_x)
+  $
+
+  and its algebra objects satisfy
+
+  $
+    Alg_cal(O) (Fun^(cal(O))(cal(C),cal(D)))
+    tilde.eq Alg_(cal(C)\/cal(O)) (cal(D))
+  $
+]
+
+The last equivalence says that algebras in the functor operad are precisely
+maps $cal(C)^times.o->cal(D)^times.o$ over $cal(O)^times.o$.
+
+#theorem(title:[Operadic Day Convolution])[
+  Suppose every fiber $cal(C)_x$ is essentially small, every
+  $cal(D)_y$ admits the required colimits, and all tensor operations of
+  $cal(D)$ preserve them separately. Then
+  $Fun^(cal(O))(cal(C),cal(D))^times.o->cal(O)^times.o$ is a coCartesian
+  fibration of $oo$-operads.
+
+  For $phi in Mul_cal(O) ({x_i}_(i in iota);y)$, the induced operation is the
+  left Kan extension along $times.o_phi^cal(C)$. At $c in cal(C)_y$ it is
+
+  $
+    (times.o_phi^"Day" ({f_i}_(i in iota)))(c)
+    tilde.eq
+    colim_(times.o_phi^cal(C) ({c_i}_(i in iota))->c)
+      times.o_phi^cal(D) ({f_i(c_i)}_(i in iota))
+  $
+]
+
+#remark(title:[Multimorphisms before Kan Extension])[
+  Before choosing the universal left Kan extension, an operation from
+  ${f_i}_(i in iota)$ to $g$ is a natural transformation
+
+  $
+    times.o_phi^cal(D) compose product_(i in iota) f_i
+    ->g compose times.o_phi^cal(C)
+  $
+
+  Thus the norm first constructs the correct space of lax comparison maps;
+  Day convolution then selects its universal target by left Kan extension.
+]

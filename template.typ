@@ -26,10 +26,27 @@
 )
 
 #let _env-counter(tag) = counter("env-" + tag)
+#let _part-counter = counter("part")
 
 #let _zero-based-heading-numbering(pattern) = (..numbers) => {
   let numbers = numbers.pos()
   numbering(pattern, numbers.first() - 1, ..numbers.slice(1))
+}
+
+// A part sits above chapters but does not enter the chapter counter. The
+// unnumbered heading supplies its bookmark and outline entry; restoring the
+// previous heading state keeps chapter and theorem numbering unchanged.
+#let part(body) = context {
+  let heading-state = counter(heading).get()
+  _part-counter.step()
+  heading(
+    level: 1,
+    numbering: none,
+    outlined: true,
+    bookmarked: true,
+    body,
+  )
+  counter(heading).update(heading-state)
 }
 
 // A compact filled 2-simplex, entirely drawn as a Fletcher diagram.
@@ -215,18 +232,37 @@
 
   // headings
   show heading.where(level: 1): it => {
-    _reset-env-counters()
-    pagebreak(weak: true)
-    v(0.9em)
-    text(
-      size: 20pt,
-      weight: "bold",
-      fill: ink,
-      [#counter(heading).display(_zero-based-heading-numbering("1"))  #it.body],
-    )
-    v(0.25em)
-    line(length: 100%, stroke: 0.7pt + rule-c)
-    v(0.55em)
+    if it.numbering == none {
+      let part-number = _part-counter.at(it.location()).first()
+      set page(header: none, footer: none)
+      pagebreak(weak: true)
+      v(1fr)
+      align(center, {
+        text(
+          size: 16pt,
+          weight: "bold",
+          fill: muted,
+          [Part #numbering("I", part-number)],
+        )
+        v(0.75em)
+        text(size: 28pt, weight: "bold", fill: ink, it.body)
+      })
+      v(1fr)
+      pagebreak()
+    } else {
+      _reset-env-counters()
+      pagebreak(weak: true)
+      v(0.9em)
+      text(
+        size: 20pt,
+        weight: "bold",
+        fill: ink,
+        [#counter(heading).display(_zero-based-heading-numbering("1"))  #it.body],
+      )
+      v(0.25em)
+      line(length: 100%, stroke: 0.7pt + rule-c)
+      v(0.55em)
+    }
   }
   show heading.where(level: 2): it => {
     v(0.75em)
@@ -296,8 +332,19 @@
     // ── table of contents ────────────────────────
     {
       show outline.entry.where(level: 1): it => {
-        v(20pt, weak: true)
-        strong(it)
+        if it.element.numbering == none {
+          let part-number = _part-counter.at(it.element.location()).first()
+          v(22pt, weak: true)
+          align(center, text(
+            fill: muted,
+            weight: "bold",
+            [-- Part #numbering("I", part-number) : #it.element.body --],
+          ))
+          v(6pt, weak: true)
+        } else {
+          v(20pt, weak: true)
+          strong(it)
+        }
       }
       text(size: 20pt, weight: "bold", fill: ink, "Contents")
       v(0.8em)
@@ -412,6 +459,7 @@
 #let wedge = $or$
 #let smash = $and$
 #let coprod = $union.sq$
+#let semidirect = $\u{22ca}$
 
 #let et = "ét"
 #let Ner = $"N"_bullet$
@@ -431,6 +479,8 @@
 #let Pic = "Pic"
 #let Ext = "Ext"
 #let Tor = "Tor"
+#let Nm = "Nm"
+#let Assem = "Assem"
 #let op = "op"
 #let pr = "pr"
 #let ev = "ev"
