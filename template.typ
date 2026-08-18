@@ -34,10 +34,9 @@
 }
 
 // A part sits above chapters but does not enter the chapter counter. The
-// unnumbered heading supplies its bookmark and outline entry; restoring the
-// previous heading state keeps chapter and theorem numbering unchanged.
-#let part(body) = context {
-  let heading-state = counter(heading).get()
+// unnumbered heading supplies its bookmark and outline entry without advancing
+// the heading counter.
+#let part(body) = {
   _part-counter.step()
   heading(
     level: 1,
@@ -46,7 +45,6 @@
     bookmarked: true,
     body,
   )
-  counter(heading).update(heading-state)
 }
 
 // A compact filled 2-simplex, entirely drawn as a Fletcher diagram.
