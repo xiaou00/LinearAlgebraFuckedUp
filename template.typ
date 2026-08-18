@@ -523,9 +523,12 @@
 #let Comm = $bold(sans("Comm"))$
 #let Alg = $bold(sans("Alg"))$
 #let CAlg = $bold(sans("CAlg"))$
+#let Mon = $bold(sans("Mon"))$
+#let CMon = $bold(sans("CMon"))$
 
 #let cat(name) = $bold(sans(name))$
 
 #let fork = $\u{22D4}$
 #let lfork = math.attach(box(width: 0pt)[], t: $fork$)
 #let odot = $\u{2299}$
+#let wr = $\u{2240}$

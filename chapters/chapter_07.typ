@@ -609,3 +609,154 @@ $oo$-categories.
   homotopy type; the contractibility criteria above guarantee that this
   replacement does not change the represented operad.
 ]
+
+== Disintegration of $oo$-Operads
+
+Unitality trivializes nullary operations. Reducedness also trivializes colors
+and unary operations, but not the higher arities.
+
+#definition(title:[Reduced $oo$-Operad])[
+  An ordinary $oo$-operad $cal(O)^times.o$ is #emph[reduced] if it is unital
+  and its color category $cal(O)$ is a contractible Kan complex.
+]
+
+#remark(title:[What “Reduced” Removes])[
+  For a reduced operad, both the nullary and unary operation spaces are
+  contractible:
+
+  $
+    Mul_cal(O) (emptyset;x) tilde.eq ast,
+    quad
+    Mul_cal(O) ({x};y)=Map_cal(O) (x,y) tilde.eq ast
+  $
+
+  Higher-arity operation spaces may still be nontrivial.
+]
+
+#definition(title:[Reduced Generalized $oo$-Operad])[
+  Regard a generalized operad $cal(P)^times.o$ as a family of ordinary
+  operads over
+
+  $ cal(B)=cal(P)_(chevron.l 0 chevron.r)^times.o $
+
+  It is #emph[reduced] if $cal(B)$ is a Kan complex and every fiber
+  $cal(P)_b^times.o$ is a reduced ordinary $oo$-operad. We write
+  $Op_oo^("gn,rd")$ for the full subcategory of reduced generalized
+  $oo$-operads.
+]
+
+If $cal(B)$ is a Kan complex, the fiber over $b$ may equivalently be described
+by the slice operad $cal(P)^times.o_(\/b)$. Hence reducedness is invariant
+under replacing the family by an equivalent generalized operad.
+
+#theorem(title:[Disintegration--Assembly Equivalence])[
+  Let $Op_oo^("u,gpd") subset Op_oo$ denote the full subcategory spanned by
+  the unital $oo$-operads whose underlying color categories are Kan
+  complexes. Assembly restricts to an equivalence
+
+  $ Assem:Op_oo^("gn,rd") tilde.eq Op_oo^("u,gpd") $
+
+  Consequently every unital $oo$-operad with groupoidal color category is,
+  in an essentially unique way, the assembly of a family of reduced
+  $oo$-operads.
+]
+
+#remark(title:[Where the Equivalence Lives])[
+  The theorem identifies the indicated full subcategories inside the
+  assembly reflection:
+
+  #align(center, diagram({
+    node((0, 0), [$Op_oo^("gn,rd")$])
+    node((1, 0), [$Op_oo^("u,gpd")$])
+    node((0, 1), [$Op_oo^"gn"$])
+    node((1, 1), [$Op_oo$])
+    edge((0, 0), (1, 0), [$Assem$], label-side: left, "->")
+    edge((0, 0), (0, 1), [$i$], label-side: right, "->")
+    edge((1, 0), (1, 1), [$i$], label-side: left, "->")
+    edge((0, 1), (1, 1), [$Assem$], label-side: right, "->")
+  }))
+
+  The upper arrow is an equivalence. The lower arrow is only a localization:
+  reducedness is exactly the extra hypothesis that makes assembly reversible.
+]
+
+#proofsketch[
+  For a unital operad $cal(O)^times.o$ with $cal(O)$ a Kan complex,
+  disintegrate it over its color groupoid. The fiber at $x$ is the slice
+  operad $cal(O)^times.o_(\/x)$. Its color category is contractible and
+  unitality supplies the unique nullary operations, so the fiber is reduced.
+  Assembly glues these slices back to $cal(O)^times.o$.
+
+  Conversely, a reduced family has contractible unary data in each fiber.
+  The approximation theorem therefore shows that maps out of its assembly
+  are detected fiberwise. This proves full faithfulness, while the preceding
+  slice construction proves essential surjectivity.
+]
+
+#pagebreak()
+
+=== Recognizing an Assembly
+
+#proposition(title:[Assembly Criterion])[
+  Let
+
+  $ f:cal(P)^times.o->cal(O)^times.o $
+
+  be a map of generalized $oo$-operads, and suppose the parameter and color
+  categories involved are Kan complexes.
+
+  + If $f$ is a weak approximation and induces a weak homotopy equivalence on
+    colors, then $f$ exhibits $cal(O)^times.o$ as the assembly of
+    $cal(P)^times.o$.
+
+  + Conversely, suppose every fiber of $cal(P)^times.o$ is unital. If $f$ is
+    an assembly, then $f$ is an approximation and induces a weak homotopy
+    equivalence on colors.
+]
+
+#proofsketch[
+  The forward implication is the approximation theorem: restriction along
+  $f$ induces equivalences on all algebra categories, which is precisely the
+  universal property of assembly. For the converse, apply the universal
+  property to free algebras. Fiberwise unitality makes the relevant
+  restriction maps equivalences; the active-fiber criterion then recovers
+  both the approximation property and the equivalence on colors.
+]
+
+#remark(title:[The Homotopy-Theoretic Input])[
+  A weak homotopy equivalence $u:x->y$ with $y$ a Kan complex is left
+  cofinal. Consequently, if a diagram sends every edge of $y$ to an
+  equivalence, replacing its indexing space along $u$ does not change its
+  colimit. This elementary observation is what allows the proof to pass
+  freely between an operad, an equivalent color space, and the corresponding
+  assembled family.
+]
+
+=== The Free-Algebra Test
+
+Suppose $cal(C)^times.o$ is a presentably symmetric monoidal $oo$-category
+whose tensor product preserves small colimits separately in each variable.
+For a map $f:cal(P)^times.o->cal(O)^times.o$, restriction gives a square
+
+#align(center, diagram({
+  node((0, 0), [$Alg_cal(O) (cal(C))$])
+  node((1, 0), [$Alg_cal(P) (cal(C))$])
+  node((0, 1), [$Fun(cal(O),cal(C))$])
+  node((1, 1), [$Fun(cal(P),cal(C))$])
+  edge((0, 0), (1, 0), [$theta$], label-side: left, "->")
+  edge((0, 0), (0, 1), [$U_cal(O)$], label-side: right, "->")
+  edge((1, 0), (1, 1), [$U_cal(P)$], label-side: left, "->")
+  edge((0, 1), (1, 1), [$theta'$], label-side: right, "->")
+}))
+
+Let $F_cal(O)$ and $F_cal(P)$ denote the respective free-algebra functors.
+The square determines a comparison transformation
+
+$ F_cal(P) compose theta' -> theta compose F_cal(O) $
+
+#proposition(title:[Free-Algebra Criterion])[
+  If $f$ is a weak approximation, the comparison transformation above is an
+  equivalence. Conversely, it is enough to test this statement in spaces on
+  the constant terminal diagram: if that comparison is an equivalence, then
+  $f$ is an approximation.
+]
