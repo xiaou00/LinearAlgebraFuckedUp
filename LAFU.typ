@@ -43,3 +43,7 @@ Most of the content is based on the great work of #emph[Jacob Lurie, Higher Alge
 #part[Algebras and Modules]
 
 #include "chapters/chapter_09.typ"
+
+#include "chapters/chapter_10.typ"
+
+#include "chapters/chapter_11.typ"
