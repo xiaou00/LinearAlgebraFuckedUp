@@ -127,30 +127,87 @@ if and only if $h$ is semi-inert.
 
 === Extension Spaces
 
-Let $f:x->y$ be active. An #emph[extension of $f$] consists informally of a
-new input $x_0$, a semi-inert inclusion $i:x->x plus x_0$, and an active map
-$f':x plus x_0->y$ whose restriction along $i$ is $f$.
+#definition(title:[Extension of an Active Morphism])[
+  Let $f:x->y$ be active. An #emph[extension of $f$] is a commutative square
 
-#align(center, diagram({
-  node((0, 0), [$x$], name: <x>)
-  node((1, 0), [$y$], name: <y>)
-  node((0, 1), [$x plus x_0$], name: <xx>)
-  node((1, 1), [$y$], name: <yy>)
-  edge(<x>, <y>, [$f$], label-side: left, "->")
-  edge(<x>, <xx>, [$i$], label-side: right, "->")
-  edge(<xx>, <yy>, [$f'$], label-side: right, "->")
-  edge(<y>, <yy>, [$id_y$], label-side: left, "->")
-}))
+  #align(center, diagram({
+    node((0, 0), [$x$], name: <x>)
+    node((1, 0), [$y$], name: <y>)
+    node((0, 1), [$x'$], name: <xp>)
+    node((1, 1), [$y'$], name: <yp>)
+    edge(<x>, <y>, [$f$], label-side: left, "->")
+    edge(<x>, <xp>, [$i$], label-side: right, "->")
+    edge(<y>, <yp>, [$u$], label-side: left, "->")
+    edge(<xp>, <yp>, [$f'$], label-side: right, "->")
+  }))
 
-These extensions and their equivalences form an $oo$-category
-$cat("Ext")(f)$. More generally, for a chain $sigma$ of active morphisms and
-a downward-closed subset $s$ of its vertices, $cat("Ext")(sigma,s)$ records
-compatible extension squares in which a new input is inserted exactly at the
-vertices in $s$ and transported by the remaining active arrows. This larger
-notation supplies the homotopy-coherent restriction maps between extension
-spaces. If the underlying $oo$-category of colors $cal(O)$ is a Kan complex,
-all morphisms in $cat("Ext")(sigma,s)$ are equivalences, so it is itself a
-Kan complex.
+  in which $i$ is semi-inert and inserts exactly one new input, $u$ is an
+  equivalence, and $f'$ is active. The full $oo$-category of such squares and
+  their equivalences is denoted $cat("Ext")(f)$.
+]
+
+#remark(title:[Meaning of an Extension])[
+  Since $u$ is an equivalence, we may identify $y'$ with $y$. If $x_0$ is the
+  new (single) input omitted by $i$, then we may similarly read $x'$ as
+  $x plus.o x_0$. The defining square becomes
+
+  #align(center, diagram({
+    node((0, 0), [$x$], name: <x>)
+    node((1, 0), [$y$], name: <y>)
+    node((0, 1), [$x plus.o x_0$], name: <xx>)
+    node((1, 1), [$y$], name: <yy>)
+    edge(<x>, <y>, [$f$], label-side: left, "->")
+    edge(<x>, <xx>, [$i$], label-side: right, "->")
+    edge(<xx>, <yy>, [$f'$], label-side: right, "->")
+    edge(<y>, <yy>, [$id_y$], label-side: left, "->")
+  }))
+
+  Thus an extension is precisely a coherent way to insert one extra input
+  into $f$. More generally, for a chain $sigma$ of active morphisms and a
+  downward-closed subset $s$ of its vertices, i.e. a morphism
+  $ sigma : Delta^n -> cal(O)^times.o_"act" $
+  $cat("Ext")(sigma,s)$ records compatible extension squares in which the new
+  input is inserted at the vertices in $s$ and transported through the
+  remaining active arrows. i.e.
+  
+  #align(center, diagram({
+	node((-1, -1), [$x_0$])
+	node((-1, 0), [$x'_0$])
+	node((0, 0), [$x'_1$])
+	node((0, -1), [$x_1$])
+	node((1, -1), [$...$])
+	node((1, 0), [$...$])
+	node((2, -1), [$x_r$])
+	node((2, 0), [$x_r plus.o x_(r,0)$])
+	node((3, -1), [$...$])
+	node((3, 0), [$...$])
+	node((4, -1), [$x_n$])
+	node((4, 0), [$x'_n$])
+	node((-2, -1), [$sigma:$])
+	node((2, 1), [$(r in s)$])
+	edge((-1, -1), (0, -1), [$f_1$], label-side: left, "->")
+	edge((0, -1), (1, -1), [$f_2$], label-side: left, "->")
+	edge((-1, -1), (-1, 0), [$g_0$], label-side: right, "->")
+	edge((0, -1), (0, 0), [$g_1$], label-side: right, "->")
+	edge((-1, 0), (0, 0), [$f'_1$], label-side: right, "->")
+	edge((0, 0), (1, 0), [$f'_2$], label-side: right, "->")
+	edge((1, -1), (2, -1), [$f_r$], label-side: left, "->")
+	edge((1, 0), (2, 0), [$f'_r$], label-side: right, "->")
+	edge((2, -1), (2, 0), [$g_r$], label-side: right, "->")
+	edge((4, -1), (4, 0), [$g_n$], label-side: left, "->")
+	edge((2, -1), (3, -1), [$f_(r+1)$], label-side: left, "->")
+	edge((2, 0), (3, 0), [$f'_(r+1)$], label-side: right, "->")
+	edge((3, -1), (4, -1), [$f_n$], label-side: left, "->")
+	edge((3, 0), (4, 0), [$f'_n$], label-side: right, "->")
+	edge((-1, -1), (-1, 0), [$tilde.eq$], label-side: left)
+	edge((0, -1), (0, 0), [$tilde.eq$], label-side: left, " ")
+	edge((4, -1), (4, 0), [$tilde.eq$], label-side: right, " ")
+  }))
+  
+  These categories supply the restriction maps
+  needed for higher coherence. If the color category $cal(O)$ is Kan, every
+  morphism in $cat("Ext")(sigma,s)$ is an equivalence, so it is a Kan complex.
+]
 
 #definition(title:[Coherent $oo$-Operad])[
   An $oo$-operad $cal(O)^times.o$ is #emph[coherent] if:
@@ -422,15 +479,119 @@ to transport the newly inserted inputs across the active map $x->y$.
   transporting one new input through one active operation.
 ]
 
-=== Module Objects
+== Module Objects
 
-Let $p:cal(C)^times.o->cal(O)^times.o$ be a fibration of $oo$-operads. A
-module is not encoded by an arbitrary extra color: one input must be marked as
-the #emph[module input], while the remaining inputs act through an
-$cal(O)$-algebra. Semi-inert arrows are exactly the maps that transport this
-marked input without duplicating it.
+Let $a$ be an ordinary associative algebra. A left $a$-module is an object
+$m$ equipped with an action $a times.o m->m$. The essential point is not the
+binary map itself, but what happens under iteration: in every composite there
+is exactly one input belonging to $m$, while all remaining inputs belong to
+$a$. The algebra inputs may branch and multiply, but the module input follows
+one distinguished path through the whole operation tree.
 
-==== From Semi-Inert Arrows to Partial Algebras
+The same idea works for an arbitrary operad. Let
+$p:cal(C)^times.o->cal(O)^times.o$ be an $cal(O)$-monoidal $oo$-category and
+let $a in Alg_(cal(O)) (cal(C))$. For an operation
+
+$ alpha in Mul_cal(O) ({x_j}_(1<=j<=n);y) $
+
+and a chosen input $i$, an $cal(O)$-module $m$ over $a$ should supply an
+action of the form
+
+$
+  a(x_1) times.o dots times.o m(x_i) times.o dots times.o a(x_n)
+  ->^(lambda_(alpha,i)) m(y)
+$
+
+These maps must be compatible with equivalences, units and operadic
+substitution. Under substitution, the distinguished input of the outer
+operation is replaced by the distinguished input of the inner operation;
+all other branches are evaluated by the algebra $a$.
+
+#quote[
+  An $cal(O)$-module is an $cal(O)$-algebra operation with exactly one input
+  declared to be the module variable; composition follows that marked input
+  and evaluates every side branch in the algebra.
+]
+
+#definition(title:[$cal(O)$-Module Object over an Algebra])[
+  Assume that $p:cal(C)^times.o->cal(O)^times.o$ is coCartesian, and let
+  $a in Alg_(cal(O)) (cal(C))$. An #emph[$cal(O)$-module object over $a$]
+  consists of the following data.
+
+  + For every color $x in cal(O)$, an object
+
+    $ m(x) in cal(C)_x $
+
+  + For every $n>=1$, every operation
+
+    $ alpha in Mul_cal(O) ({x_j}_(1<=j<=n);y) $
+
+    and every distinguished input $1<=i<=n$, an action map in $cal(C)_y$
+
+    $
+      lambda_(alpha,i):
+      times.o_alpha
+        (a(x_1),dots,a(x_(i-1)),m(x_i),a(x_(i+1)),dots,a(x_n))
+      ->m(y)
+    $
+
+    Here
+
+    $
+      times.o_alpha:product_(1<=j<=n) cal(C)_(x_j)->cal(C)_y
+    $
+
+    is the operadic tensor functor classified by the coCartesian lift of
+    $alpha$. Thus every input except the $i$th is evaluated in the algebra
+    $a$, while the $i$th input and the output are evaluated in the module
+    $m$.
+
+  + These maps are equivariant under permutations of the inputs. For an
+    identity operation $id_x$, the map $lambda_(id_x,1)$ is equivalent to
+    $id_(m(x))$.
+
+  + They are coherently compatible with substitution: after substituting
+    operations into $alpha$, the unique inner operation containing the
+    distinguished input is evaluated by a module action $lambda$, while all
+    other inner operations are evaluated by the algebra structure of $a$.
+    The resulting composite agrees coherently with the action associated to
+    the substituted operation.
+
+  There is no marked action for a nullary operation, since it has no input to
+  distinguish. Nullary operations still enter through the algebra $a$ when
+  they occur on an unmarked side branch.
+
+  In the one-colored case, writing $a$ for the algebra and $m$ for the module,
+  an $n$-ary operation $alpha$ with marked input $i$ therefore determines
+
+  $
+    lambda_(alpha,i):
+    a^(times.o(i - 1)) times.o m times.o a^(times.o(n - i)) -> m
+  $
+
+  We denote the resulting $oo$-category of module objects and compatible
+  module maps by $cat("Mod")_a^(cal(O)) (cal(C))$.
+]
+
+#remark(title:[First Examples])[
+  For the commutative operad, the choice of the marked slot is immaterial and
+  this recovers the usual notion of a module over a commutative algebra. For
+  an associative operad, the order of the marked slot records the appropriate
+  one-sided or two-sided action data prescribed by that operad. At the other
+  extreme, $EE_0$ has no nontrivial multi-input operation, so an
+  $EE_0$-module is only an object of the ambient category.
+]
+
+#remark(title:[Why Semi-Inert Arrows Appear])[
+  The preceding action formula is the intuition, but by itself it does not
+  record all higher coherences. A semi-inert arrow is precisely the
+  combinatorial device that moves one marked input without copying it. Its
+  occupied slots are evaluated by $a$, while its unique unoccupied slot is
+  filled by $m$. Thus semi-inert arrows package all maps $lambda_(alpha,i)$
+  and all compatibilities among them into a single operadic object.
+]
+
+=== From Semi-Inert Arrows to Partial Algebras
 
 Retain the semi-inert arrow category $cal(K)_cal(O)$ and its evaluations
 
@@ -475,11 +636,16 @@ $cal(C)^times.o$.
   $cal(K)_cal(O)$ remembers coherently which slot is the module slot.
 ]
 
-==== The Module Operad over an Algebra
+=== The Module Operad over an Algebra
 
 #definition(title:[Module Operad])[
   Let $a in Alg_(cal(O)) (cal(C))$. The #emph[$cal(O)$-module operad over
-  $a$] is the fiber product
+  $a$], denoted $cat("Mod")_a^(cal(O)) (cal(C))^times.o$, is the
+  $oo$-operad whose objects are $cal(O)$-module objects over $a$ and whose
+  active morphisms are the coherently compatible marked action maps
+  $lambda_(alpha,i)$.
+
+  Precisely, it is obtained by the fiber product
 
   $
     cat("Mod")_a^(cal(O)) (cal(C))^times.o
@@ -487,7 +653,9 @@ $cal(C)^times.o$.
       times_(cat("PAlg")_(cal(O)) (cal(C))) {a}
   $
 
-  Its fiber over a color $x in cal(O)$ is denoted
+  The map to $cat("PAlg")_(cal(O)) (cal(C))$ forgets the marked module input
+  and remembers the algebra inputs. Pulling back along $a$ therefore fixes
+  every unmarked input to be $a$. Its fiber over a color $x in cal(O)$ is denoted
   $cat("Mod")_(a,x)^(cal(O)) (cal(C))$. Its objects are the possible module
   objects of color $x$, and its active operations encode the action of the
   algebra inputs on the distinguished module input.
@@ -503,11 +671,64 @@ Thus the construction separates two kinds of data
   edge(<a>, <pa>, [algebra operations], "->")
   edge(<ma>, <m>, "->")
   edge(<ma>, <a>, "->")
-  edge(<m>, <pa>, [restrict to null arrows], label-side: left, "->")
+  edge(<m>, <pa>, [restrict to null arrows], label-side: right, "->")
 }))
 
 The square is a pullback: fixing $a$ fixes the ordinary algebra inputs, while
 the remaining variable is the module object.
+
+#remark(title:[How to Read the Construction])[
+  The fiber product can be read in four steps.
+
+  + A semi-inert arrow chooses a single #emph[hole] among the inputs of an
+    $cal(O)$-operation. The hole is never duplicated, so it can be followed
+    through a composite operation.
+
+  + A lift to $cal(C)^times.o$ decorates every occupied input by algebra data
+    and decorates the hole by a variable object $m$. Before choosing $a$, this
+    is the space $overline(cat("Mod"))^(cal(O)) (cal(C))^times.o$ of all such
+    decorated marked operations.
+
+  + Restriction to null arrows forgets the moving hole and reads only the
+    algebra decoration. The fiber product with ${a}$ imposes the boundary
+    condition that this decoration is the fixed algebra $a$. Thus the fiber
+    product does not create an action: it selects exactly those marked
+    operations whose unmarked branches already use the multiplication of
+    $a$.
+
+  + What remains free is the object occupying the hole. An active marked
+    operation therefore has the form
+
+  #align(center, diagram({
+    node((0, 0), [$a(x_1)$], name: <a1>)
+    node((1, 0), [$m(x_i)$], name: <mi>)
+    node((2, 0), [$a(x_n)$], name: <an>)
+    node((1, 1), [$(alpha,i)$], name: <op>)
+    node((1, 2), [$m(y)$], name: <my>)
+    edge(<a1>, <op>, "->")
+    edge(<mi>, <op>, [marked], label-side: center, "->")
+    edge(<an>, <op>, "->")
+    edge(<op>, <my>, [$lambda_(alpha,i)$], label-side: right, "->")
+  }))
+
+  When marked operations are substituted, the marked edge is joined to the
+  next marked edge, while every side branch is evaluated by $a$. Coherence of
+  $cal(O)^times.o$ says that all ways of performing these substitutions give
+  the same result up to a contractible space of choices. This is exactly why
+  the selected diagrams assemble into an $oo$-operad.
+]
+
+#remark(title:[A Binary Example])[
+  For a binary operation $mu$, choosing the second input gives
+
+  $ a times.o m ->^(lambda_(mu,2)) m $
+
+  Substituting multiplication into the algebra input and substituting another
+  marked action into the module input produce the two sides of the familiar
+  associativity law. The module axiom is therefore not added separately: it
+  is the image of operadic substitution inside
+  $cat("Mod")_a^(cal(O)) (cal(C))^times.o$.
+]
 
 #theorem(title:[Existence of the Module Operad])[
   Suppose that $cal(O)^times.o$ is coherent and that
@@ -529,7 +750,7 @@ $e_0:cal(K)_cal(O)->cal(O)^times.o$ is flat. Consequently semi-inert lifts
 survive base change and compose with the homotopy-exactness required by the
 operad axioms.
 
-==== Detecting Inert Morphisms
+=== Detecting Inert Morphisms
 
 #proposition(title:[Inertness in the Module Operad])[
   A morphism $f$ in
@@ -558,7 +779,7 @@ operad axioms.
   the stated fibration of $oo$-operads.
 ]
 
-==== The $EE_0$ Sanity Check
+=== The $EE_0$ Sanity Check
 
 #proposition(title:[$EE_0$-Modules])[
   Let $q:cal(C)^times.o->EE_0^times.o$ be a fibration of $oo$-operads. For
@@ -575,3 +796,147 @@ additional action law. Once the $EE_0$-algebra $a$ is fixed, an $a$-module is
 therefore just an arbitrary object of $cal(C)$. This extreme case confirms
 that the module operad adds exactly the operations prescribed by the base
 operad, and no hidden structure.
+
+== Algebra Objects in Module Categories
+
+The preceding construction does more than produce a category of modules: it
+also remembers enough operadic structure to form algebras #emph[inside] that
+category. Classically, if $a$ is a commutative algebra, then a commutative
+algebra object of $cat("Mod")_a (cal(C))$ is simply a commutative algebra $b$
+of $cal(C)$ together with a map $a->b$. The $oo$-categorical statement is the
+same, but the map $a->b$ and all of its compatibilities are encoded by the
+semi-inert construction.
+
+Write $Alg_(cal(O)) (cal(C))^(a slash)$ for the undercategory whose objects
+are morphisms $a->b$ of $cal(O)$-algebras.
+
+=== The Universal Arrow Description
+
+#proposition(title:[Algebras in the Universal Module Operad])[
+  Suppose that $cal(O)^times.o$ is coherent and that
+  $cal(C)^times.o->cal(O)^times.o$ is a fibration of $oo$-operads. There is a
+  canonical equivalence
+
+  $
+    Alg_(cal(O)) (overline(cat("Mod"))^(cal(O)) (cal(C)))
+    tilde.eq
+    Fun(Delta^1,Alg_(cal(O)) (cal(C)))
+  $
+
+  Thus an algebra in the universal module construction is exactly an arrow
+  $a->b$ between $cal(O)$-algebras.
+]
+
+#remark(title:[Why an Arrow Appears])[
+  The source of a semi-inert arrow records the algebra inputs, while its
+  distinguished empty slot records the future module variable. An algebra
+  object supplies compatible operations at both endpoints. Evaluation at
+  the two endpoints therefore produces two algebras $a,b$, and transport
+  along the marked slot produces the algebra map $a->b$. Conversely, such a
+  map lets every operation of $a$ act on $b$ through the corresponding
+  operation of $b$.
+
+  #align(center, diagram({
+    node((0, 0), [$a$], name: <a>)
+    node((1, 0), [$b$], name: <b>)
+    node((0.5, 1), [$Alg_(cal(O)) (overline(cat("Mod"))^(cal(O)) (cal(C)))$],
+      name: <alg>)
+    edge(<a>, <b>, [algebra map], "->")
+    edge(<alg>, <a>, [$e_0$], label-side: right, "->")
+    edge(<alg>, <b>, [$e_1$], label-side: left, "->")
+  }))
+]
+
+=== Algebras over a Fixed Algebra
+
+#theorem(title:[Algebras in $a$-Modules])[
+  Let $a in Alg_(cal(O)) (cal(C))$. Restricting the preceding equivalence to
+  the fiber over $a$ gives a canonical equivalence
+
+  $
+    Alg_(cal(O)) (cat("Mod")_a^(cal(O)) (cal(C)))
+    tilde.eq
+    Alg_(cal(O)) (cal(C))^(a slash)
+  $
+
+  In other words, an $cal(O)$-algebra object in $a$-modules is precisely an
+  $cal(O)$-algebra $b$ in $cal(C)$ equipped with a morphism $a->b$.
+]
+
+In the commutative case this reads
+
+$
+  cat("CAlg") (cat("Mod")_a (cal(C)))
+  tilde.eq
+  cat("CAlg") (cal(C))^(a slash)
+$
+
+The familiar phrase “a commutative $a$-algebra” therefore has no additional
+meaning hidden in it: it is exactly a commutative algebra under $a$.
+
+#proofsketch[
+  The universal module operad maps to the arrow category of
+  $Alg_(cal(O)) (cal(C))$ by endpoint evaluation. Coherence makes the source
+  evaluation on semi-inert arrows flat, so restriction and the required Kan
+  extensions preserve the operadic Segal conditions. The resulting endpoint
+  functor is an equivalence. Pulling it back along the vertex ${a}$ identifies
+  its fiber with the undercategory of arrows beginning at $a$.
+]
+
+=== Iterating the Module Construction
+
+Let $cat("Mod")^(cal(O)) (cal(C))$ denote the total $oo$-category of pairs
+$(b,m)$ consisting of an $cal(O)$-algebra $b$ and a $b$-module $m$. Its
+projection remembers $b$. The preceding theorem upgrades to the pullback
+formula
+
+$
+  cat("Mod")^(cal(O)) (cat("Mod")_a^(cal(O)) (cal(C)))
+  tilde.eq
+  cat("Mod")^(cal(O)) (cal(C))
+  times_(Alg_(cal(O)) (cal(C)))
+  Alg_(cal(O)) (cal(C))^(a slash)
+$
+
+An object on either side is therefore the same triple
+
+$ a->b, quad m in cat("Mod")_b^(cal(O)) (cal(C)) $
+
+#proposition(title:[Modules in Modules])[
+  Let $b$ be an $cal(O)$-algebra object of
+  $cat("Mod")_a^(cal(O)) (cal(C))$, and let $bar(b)$ be the target algebra in
+  $cal(C)$ corresponding to the map $a->bar(b)$. Then there is a canonical
+  equivalence
+
+  $
+    cat("Mod")_b^(cal(O))
+      (cat("Mod")_a^(cal(O)) (cal(C)))
+    tilde.eq
+    cat("Mod")_(bar(b))^(cal(O)) (cal(C))
+  $
+
+  Thus a $b$-module internal to $a$-modules is just a module over the
+  underlying algebra $bar(b)$ in $cal(C)$.
+]
+
+#remark(title:[Classical Reading])[
+  For commutative rings, if $a->b$ is a ring map, then a $b$-module in the
+  category of $a$-modules carries no extra structure beyond its ordinary
+  $b$-module structure: the $a$-action is already obtained by restriction of
+  scalars along $a->b$. The proposition is the fully coherent operadic form
+  of this elementary fact.
+]
+
+#proofsketch[
+  Both sides are obtained by fixing the same algebra arrow $a->bar(b)$ in the
+  universal category of marked operations. The defining squares are homotopy
+  pullbacks, and endpoint evaluation is an equivalence; taking the relevant
+  fibers therefore gives the displayed equivalence of module
+  $oo$-categories.
+]
+
+#quote[
+  Algebra objects in $a$-modules are algebras under $a$, and modules over
+  such an algebra are the same whether computed inside $a$-modules or in the
+  original ambient category.
+]
