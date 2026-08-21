@@ -47,3 +47,7 @@ Most of the content is based on the great work of #emph[Jacob Lurie, Higher Alge
 #include "chapters/chapter_10.typ"
 
 #include "chapters/chapter_11.typ"
+
+#part[Associativity]
+
+#include "chapters/chapter_12.typ"

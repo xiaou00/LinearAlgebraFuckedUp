@@ -842,8 +842,8 @@ are morphisms $a->b$ of $cal(O)$-algebras.
     node((0.5, 1), [$Alg_(cal(O)) (overline(cat("Mod"))^(cal(O)) (cal(C)))$],
       name: <alg>)
     edge(<a>, <b>, [algebra map], "->")
-    edge(<alg>, <a>, [$e_0$], label-side: right, "->")
-    edge(<alg>, <b>, [$e_1$], label-side: left, "->")
+    edge(<alg>, <a>, [$e_0$], label-side: left, "->")
+    edge(<alg>, <b>, [$e_1$], label-side: right, "->")
   }))
 ]
 
@@ -939,4 +939,742 @@ $ a->b, quad m in cat("Mod")_b^(cal(O)) (cal(C)) $
   Algebra objects in $a$-modules are algebras under $a$, and modules over
   such an algebra are the same whether computed inside $a$-modules or in the
   original ambient category.
+]
+
+== Modules over Trivial Algebras
+
+The simplest module theory is already instructive. In an ordinary symmetric
+monoidal category, the unit object $1$ is a commutative algebra, and every
+object $c$ has the canonical action
+
+$
+  1 times.o c tilde.eq c
+$
+
+Hence a module over $1$ is just an object of the ambient category. The next
+result says that this remains true for a coherent $oo$-operad, including all
+of its higher operations rather than merely its underlying $oo$-category.
+
+#remark(title:[Trivial Algebra])[
+  Recall that a trivial $cal(O)$-algebra $a$ takes every color $x$ to the
+  chosen unit object $1_x$ in the corresponding fiber. Equivalently, $a$ is
+  an initial object of $Alg_(cal(O)) (cal(C))$. Its structure maps contain no
+  information beyond the unit constraints.
+]
+
+#proposition(title:[Modules over a Trivial Algebra])[
+  Let $cal(O)^times.o$ be coherent, let
+  $p:cal(C)^times.o->cal(O)^times.o$ be a fibration of $oo$-operads, and let
+  $a$ be a trivial $cal(O)$-algebra in $cal(C)$. Then the forgetful map is an
+  equivalence of $oo$-operads
+
+  $
+    theta:(cat("Mod")_a^(cal(O)) (cal(C)))^times.o
+    tilde.eq
+    cal(C)^times.o
+  $
+
+  Thus every object of $cal(C)$ admits an essentially unique $a$-module
+  structure, functorially and compatibly with all operadic operations.
+]
+
+#remark(title:[What the Action Becomes])[
+  A module operation has one distinguished module input; all remaining
+  algebra inputs are values of $a$, hence unit objects. Substituting them into
+  an operation leaves only the corresponding ambient operation on the module
+  input. In the one-colored symmetric monoidal case this is simply
+
+  $
+    1 times.o dots.c times.o 1 times.o m times.o 1 times.o dots.c times.o 1
+    tilde.eq m
+  $
+
+  Therefore the equivalence above forgets no action data: that data is forced
+  by the unit laws and has a contractible space of choices.
+]
+
+#proofsketch[
+  Unit objects provide the decisive lifting property: every semi-inert
+  morphism in $cal(O)^times.o$ can be lifted to a $p$-coCartesian morphism by
+  filling all unused inputs with units. The universal module construction can
+  consequently be described by functors on the semi-inert arrow category.
+  Restriction to its unit subcategory is a trivial Kan fibration: the required
+  extensions exist as relative left Kan extensions, and their choices are
+  contractible. Since trivial algebras themselves form a contractible fiber,
+  the forgetful map $theta$ is essentially surjective and fully faithful.
+  Its construction preserves inert morphisms, so this is an equivalence of
+  $oo$-operads, not only an equivalence of underlying $oo$-categories.
+]
+
+In particular, for the unit commutative algebra one recovers
+
+$
+  cat("Mod")_1 (cal(C)) tilde.eq cal(C)
+$
+
+Combining this with the preceding section also gives
+
+$
+  Alg_(cal(O)) (cat("Mod")_a^(cal(O)) (cal(C)))
+  tilde.eq
+  Alg_(cal(O)) (cal(C))
+$
+
+because the trivial algebra $a$ is initial, so its undercategory is the whole
+algebra category up to equivalence.
+
+#quote[
+  A module over the trivial algebra is not an object with extra structure; it
+  is an ordinary object whose unique action is supplied by the unit laws.
+]
+
+== Limits of Modules
+
+Let $cal(C)^times.o$ be a symmetric monoidal category, let $a$ be a
+commutative algebra object, and let ${m_i}$ be a diagram of $a$-modules. If
+the underlying diagram admits a limit $m=lim_i m_i$ in $cal(C)$, the maps
+
+$
+  a times.o m -> a times.o m_i -> m_i
+$
+
+assemble, by the universal property of $m$, to an action
+$a times.o m -> m$. The associativity and unit identities can be checked
+after projection to every $m_i$, so $m$ is also the limit in the category of
+$a$-modules. The same argument survives in the operadic setting, with
+ordinary limits replaced by relative limits in the appropriate fiber.
+
+#proposition(title:[Limits Are Created in the Underlying Fiber])[
+  Let $cal(O)^times.o$ be coherent and let
+
+  $
+    q:cal(C)^times.o -> cal(O)^times.o
+  $
+
+  be a fibration of $oo$-operads. Fix an algebra
+  $a in Alg_(cal(O)) (cal(C))$ and a color $x in cal(O)$. Write
+
+  $
+    U_(a,x):cat("Mod")_(a,x)^(cal(O)) (cal(C))->cal(C)_x
+  $
+
+  for the underlying-object functor. Suppose that a diagram
+  $p:K->cat("Mod")_(a,x)^(cal(O)) (cal(C))$ has an underlying
+  $q$-limit cone in $cal(C)_x$. Then this cone admits an essentially unique
+  compatible $a$-module structure, and hence determines a limit cone in
+  $cat("Mod")_(a,x)^(cal(O)) (cal(C))$.
+
+  More precisely, an extension $bar(p):K^triangle.l ->
+  cat("Mod")_(a,x)^(cal(O)) (cal(C))$ is a limit diagram if and only if
+  $U_(a,x) compose bar(p)$ is a $q$-limit diagram in $cal(C)_x$.
+]
+
+#remark(title:[The Relative Form])[
+  The statement does not require $q$ to be coCartesian. For a general
+  fibration, “limit” means a #emph[$q$-limit]: it is universal among cones
+  whose image in $cal(O)^times.o$ is fixed. The theorem says that the
+  diagonal map from the module operad to $cal(C)^times.o$ creates these
+  relative limits. When $q$ is a coCartesian fibration and the base diagram
+  is constant at $x$, this reduces to an ordinary limit in the fiber
+  $cal(C)_x$.
+]
+
+#corollary(title:[Fiberwise Completeness])[
+  Assume that $q$ is an $cal(O)$-monoidal $oo$-category. If the fiber
+  $cal(C)_x$ admits $K$-indexed limits, then so does
+  $cat("Mod")_(a,x)^(cal(O)) (cal(C))$, for every
+  $a in Alg_(cal(O)) (cal(C))$, and $U_(a,x)$ preserves and reflects those
+  limits
+
+  $
+    U_(a,x) (lim_K m_k) tilde.eq lim_K U_(a,x) (m_k)
+  $
+
+  In particular, products, pullbacks, and equalizers of modules are computed
+  on their underlying objects whenever the corresponding limits exist in
+  $cal(C)_x$.
+]
+
+=== Restriction of Scalars as Cartesian Transport
+
+Let $cat("Mod")^(cal(O)) (cal(C))_x$ denote the $oo$-category of pairs
+$(a,m)$ with $a in Alg_(cal(O)) (cal(C))$ and
+$m in cat("Mod")_(a,x)^(cal(O)) (cal(C))$.
+
+#proposition(title:[The Cartesian Fibration of Modules])[
+  For every color $x in cal(O)$, the projection
+
+  $
+    phi_x:cat("Mod")^(cal(O)) (cal(C))_x
+      ->Alg_(cal(O)) (cal(C))
+  $
+
+  is a Cartesian fibration. A morphism above a map of algebras
+  $u:a->b$ is $phi_x$-Cartesian if and only if its image in $cal(C)_x$ is an
+  equivalence. Consequently, Cartesian transport along $u$ is the
+  restriction-of-scalars functor
+
+  $
+    u^*:cat("Mod")_(b,x)^(cal(O)) (cal(C))
+      ->cat("Mod")_(a,x)^(cal(O)) (cal(C))
+  $
+
+  and it leaves the underlying object unchanged
+
+  $
+    U_(a,x) compose u^* tilde.eq U_(b,x)
+  $
+
+  The corresponding global projection
+  $phi:cat("Mod")^(cal(O)) (cal(C))->Alg_(cal(O)) (cal(C))$ is likewise a
+  Cartesian fibration, with the same criterion for Cartesian morphisms.
+]
+
+#remark(title:[What This Organizes])[
+  The fiber of $phi_x$ over $a$ is precisely
+  $cat("Mod")_(a,x)^(cal(O)) (cal(C))$. Thus one construction simultaneously
+  records all module categories and all restriction-of-scalars functors
+
+  For $m in cat("Mod")_(b,x)^(cal(O)) (cal(C))$, the relevant Cartesian
+  lift is the upper edge in
+
+  #align(center, diagram({
+    node((0, 0), [$(a,u^*m)$], name: <uam>)
+    node((1, 0), [$(b,m)$], name: <bm>)
+    node((0, 1), [$a$], name: <a>)
+    node((1, 1), [$b$], name: <b>)
+    edge(<uam>, <bm>, [$tilde(u)$], "->")
+    edge(<uam>, <a>, [$phi_x$], "->")
+    edge(<bm>, <b>, [$phi_x$], "->")
+    edge(<a>, <b>, [$u$], "->")
+  }))
+
+  Pulling its source back from the target $m$ produces the contravariant
+  functor $u^*:cat("Mod")_(b,x)^(cal(O)) (cal(C))->
+  cat("Mod")_(a,x)^(cal(O)) (cal(C))$.
+]
+
+=== Splitting the Inputs
+
+#definition(title:[Splitting])[
+  A #emph[splitting] of $chevron.l n chevron.r in Fin_*$ is a pair of inert
+  morphisms
+
+  $
+    alpha:chevron.l n chevron.r->chevron.l n_0 chevron.r,
+    quad
+    beta:chevron.l n chevron.r->chevron.l n_1 chevron.r
+  $
+
+  whose selected non-basepoint inputs partition
+  $chevron.l n chevron.r^circle$
+
+  $
+    alpha^(-1) (chevron.l n_0 chevron.r^circle)
+      union
+    beta^(-1) (chevron.l n_1 chevron.r^circle)
+      = chevron.l n chevron.r^circle,
+    quad
+    alpha^(-1) (chevron.l n_0 chevron.r^circle)
+      inter
+    beta^(-1) (chevron.l n_1 chevron.r^circle)
+      = emptyset
+  $
+
+  A splitting of a diagram $p:K->Ner(Fin_*)$ is a pair of natural
+  transformations $alpha:p->p_0$ and $beta:p->p_1$ which gives such a
+  splitting at every vertex. For a diagram $p:K->cal(O)^times.o$, the two
+  transformations are additionally required to be inert. We say that
+  $alpha$ is #emph[split] and call $beta$ its #emph[complement].
+]
+
+#remark(title:[Geometric Meaning])[
+  A splitting separates the inputs of an operation into two blocks. In the
+  module construction one block contains the distinguished module input and
+  the other contains the algebra inputs
+
+  #align(center, diagram({
+    node((0, 0), [$chevron.l n chevron.r$], name: <n>)
+    node((-1.1, 1), [$chevron.l n_0 chevron.r$], name: <n0>)
+    node((1.1, 1), [$chevron.l n_1 chevron.r$], name: <n1>)
+    edge(<n>, <n0>, [$alpha$], "->")
+    edge(<n>, <n1>, [$beta$], "->")
+  }))
+
+  Inert lifts of $alpha$ and $beta$ exhibit the original object as the
+  operadic product of the two blocks. The space of complements and compatible
+  inert lifts is contractible, so this decomposition introduces no hidden
+  choice.
+]
+
+#proposition(title:[Splitting Criterion for Module Limits])[
+  Let $bar(p):K^triangle.l->cal(C)^times.o$ be a cone lying over a split
+  diagram in $cal(O)^times.o$. Write $bar(p)_0$ and $bar(p)_1$ for the cones
+  obtained from the two complementary inert projections. Then $bar(p)$ is a
+  $q$-limit cone if and only if the required component cone is a $q$-limit
+  cone after the complementary component has been fixed. Equivalently,
+  operadic products allow the limit problem to be checked one block of inputs
+  at a time.
+]
+
+#proofsketch[
+  The universal module construction presents a module as a compatible
+  functor on the category of semi-inert arrows. Coherence of
+  $cal(O)^times.o$ makes source evaluation on that arrow category flat, so a
+  relative limit cone in $cal(C)^times.o$ lifts through the required right
+  Kan extension. Splittings reduce the lifting problem to its module block
+  and algebra block. The algebra block is already fixed by $a$, while the
+  module block is the underlying limit in $cal(C)_x$. The contractibility of
+  complements makes these componentwise lifts glue uniquely up to
+  equivalence. Applying the same argument to a map $a->b$ shows that its
+  Cartesian lift changes only the action, which gives restriction of scalars.
+]
+
+#quote[
+  Limits of modules are computed on underlying objects; variation of the
+  algebra is encoded by Cartesian transport, and splitting the inputs is the
+  mechanism that makes both statements compatible with operadic composition.
+]
+
+== Colimits of Modules
+
+The classical calculation already contains the main idea. Let
+$(m_i)_(i in I)$ be a diagram of left $a$-modules and suppose that
+$m=colim_i m_i$ exists in the underlying symmetric monoidal category. If
+tensoring with $a$ preserves this colimit, then
+
+$
+  a times.o m
+  tilde.eq colim_i (a times.o m_i)
+  ->colim_i m_i
+  tilde.eq m
+$
+
+defines an action on $m$. Associativity and unitality follow from those of
+the actions on the $m_i$, so $m$ is the colimit in the module category.
+
+There are two points hidden in this short argument. First, “tensoring with
+$a$ preserves colimits” must be interpreted simultaneously for every
+operation of the base operad. Second, the action on the colimit must be
+constructed with all higher coherences. Operadic colimit diagrams and the
+semi-inert arrow category provide exactly these two ingredients.
+
+=== Presentable $cal(O)$-Monoidal Categories
+
+#definition(title:[Presentable $cal(O)$-Monoidal $oo$-Category])[
+  Let $cal(O)^times.o$ be an $oo$-operad. An $cal(O)$-monoidal
+  $oo$-category
+
+  $
+    q:cal(C)^times.o->cal(O)^times.o
+  $
+
+  is #emph[presentable] if the following conditions hold.
+
+  + The map $q$ is a coCartesian fibration of $oo$-operads.
+
+  + The fibration $q$ is compatible with small colimits: every fiber
+    $cal(C)_x$ admits small colimits and every operadic tensor functor
+
+    $
+      times.o_alpha:
+      product_(1<=i<=n) cal(C)_(x_i)->cal(C)_y
+    $
+
+    preserves them separately in each variable.
+
+  + Every fiber $cal(C)_x$ is a presentable $oo$-category.
+]
+
+#remark(title:[The Operadic Meaning of the Hypothesis])[
+  For a one-colored symmetric monoidal category, compatibility says that
+  $c times.o (-)$ preserves small colimits for every $c$. For a colored
+  operad it must hold for every operation
+
+  $
+    alpha in Mul_cal(O) ({x_i}_(1<=i<=n);y)
+  $
+
+  and in every input variable. This is the precise higher-categorical form
+  of the classical condition used in the first calculation.
+]
+
+=== The Extension Theorem for Module Colimits
+
+The main technical issue is not taking a colimit in one fiber, but extending
+that colimit through the semi-inert diagrams which encode a moving module
+input. We formulate the result in a form that separates the local colimit
+condition from the global coherent extension.
+
+Let $cal(O)^times.o$ be coherent, let
+
+$
+  q:cal(C)^times.o->cal(O)^times.o
+$
+
+be a fibration of $oo$-operads, and fix
+$a in Alg_(cal(O)) (cal(C))$. Write
+
+$
+  psi:cat("Mod")_a^(cal(O)) (cal(C))^times.o
+  ->cal(O)^times.o
+$
+
+for the module operad. Suppose that $K$ is an $oo$-category and that
+
+$
+  p:K->cat("Mod")_a^(cal(O)) (cal(C))^times.o
+$
+
+is a diagram. Fix an active cone
+
+$
+  overline(r):K^triangle.r->cal(O)^times.o_"act"
+$
+
+extending $psi compose p$, and let its cone point have value
+$X in cal(O)^times.o$. Using the source evaluation
+$e_0:cal(K)_cal(O)->cal(O)^times.o$, form
+
+$
+  overline(cal(D))
+  :=K^triangle.r times_(cal(O)^times.o) cal(K)_cal(O),
+  quad
+  cal(D):=K times_(cal(O)^times.o) cal(K)_cal(O)
+$
+
+The module diagram $p$ is equivalently encoded by a functor
+
+$
+  F_p:cal(D)->cal(C)^times.o
+$
+
+compatible with the fixed partial algebra determined by $a$.
+
+For an object $D=(v,id_X)$ over the cone point, let
+$cal(D)_(\/D)^"act"$ be the full subcategory of
+
+$
+  cal(D) times_(overline(cal(D))) overline(cal(D))_(\/D)
+$
+
+spanned by arrows $D'->D$ whose source belongs to $cal(D)$ and whose image
+in $cal(O)^times.o$ determines a square
+
+#align(center, diagram({
+  node((0, 0), [$X'$], name: <xp>)
+  node((1, 0), [$Y'$], name: <yp>)
+  node((0, 1), [$X$], name: <x>)
+  node((1, 1), [$X$], name: <xx>)
+  edge(<xp>, <yp>, "->")
+  edge(<xp>, <x>, "->")
+  edge(<yp>, <xx>, [$f$ #text[ active]], label-side: left, "->")
+  edge(<x>, <xx>, [$id_X$], label-side: right, "->")
+}))
+
+This is the category of active ways to transport the distinguished module
+input into the cone point.
+
+#theorem(title:[Operadic Extension Theorem for Modules])[
+  In the situation above, assume that for every
+  $D=(v,id_X)$ the diagram
+
+  $
+    cal(D)_(\/D)^"act"->overline(cal(D))_(\/D)
+      ->overline(cal(D))
+  $
+
+  admits an extension to an operadic $q$-colimit cone in
+  $cal(C)^times.o$. Then the following statements hold.
+
+  + There exists an extension
+
+    $
+      overline(p):K^triangle.r
+      ->cat("Mod")_a^(cal(O)) (cal(C))^times.o
+    $
+
+    lying over $overline(r)$ and extending $p$.
+
+  + Let
+    $overline(F):overline(cal(D))->cal(C)^times.o$ be the functor
+    corresponding to an arbitrary extension $overline(p)$. The cone
+    $overline(p)$ is an operadic $psi$-colimit diagram if and only if, for
+    every $D=(v,id_X)$, the composite
+
+    $
+      (cal(D)_(\/D)^"act")^triangle.r
+      ->overline(cal(D))_(\/D)
+      ->overline(cal(D))
+      ->^overline(F) cal(C)^times.o
+    $
+
+    is an operadic $q$-colimit diagram.
+]
+
+#remark(title:[Local-to-Global Meaning])[
+  The theorem says that a module colimit is checked at the single marked
+  input. Every unmarked branch is already controlled by the fixed algebra
+  $a$. Coherence of $cal(O)^times.o$ then guarantees that the locally
+  constructed cone can be transported through every active operation and
+  glued into one module object.
+]
+
+#proofsketch[
+  Pull the extension problem back to the semi-inert arrow category
+  $cal(K)_cal(O)$. A simplex there records a chain of pointed maps, each of
+  which is active, inert, or neutral. Filter the relevant nerve first by the
+  length of this chain and then by six classes: the new simplices whose last
+  noninvertible stages are active, inert, neutral followed by active,
+  active followed by inert, and the two boundary cases involving consecutive
+  inert stages.
+
+  The extension is constructed transfinitely along this filtration. At an
+  active attachment, the required filler is supplied by the assumed
+  operadic $q$-colimit. At an inert attachment, it is supplied by an inert
+  lift in $cal(C)^times.o$. Neutral attachments reduce to inner-horn
+  extensions. The coherence criterion makes source evaluation from
+  $cal(K)_cal(O)$ flat; consequently the square controlling each attachment
+  is a homotopy pushout. The relevant restriction maps are therefore trivial
+  Kan fibrations, so every extension exists through a contractible space of
+  choices.
+
+  For the characterization of operadic $psi$-colimits, apply the same
+  filtration after adjoining an arbitrary active target cocone. The local
+  operadic $q$-colimit condition supplies all fillers in one direction. In
+  the other direction, the uniqueness property of operadic colimit cones
+  forces the local comparison cones to be operadic $q$-colimits. This proves
+  both existence and the stated if-and-only-if criterion.
+]
+
+#quote[
+  A colimit of modules is assembled locally at the marked input and glued
+  globally by coherence of the operad.
+]
+
+=== Unit Objects and the Regular Module
+
+The one-simplex case of the extension theorem gives a useful recognition
+criterion. Let $m_0$ lie over the zero-input object of the module operad and
+let
+
+$
+  f:m_0->m
+$
+
+be a morphism. It determines a functor $F_f$ on the pullback of
+$cal(K)_cal(O)$ along the base edge $psi(f)$.
+
+#corollary(title:[One-Edge Colimit Test])[
+  The following conditions are equivalent.
+
+  + The edge $f$ is classified by an operadic $psi$-colimit diagram
+
+    $
+      Delta^1->cat("Mod")_a^(cal(O)) (cal(C))^times.o
+    $
+
+  + The canonical comparison between the value of $F_f$ on the base edge
+    and its value on the identity of the target is an equivalence
+
+    $
+      F_f (psi(f))->F_f (id_(psi(m)))
+    $
+
+  Moreover, for every $X in cal(O)^times.o$ there exists such an edge with
+  $psi(m)=X$.
+]
+
+#proofsketch[
+  For a one-object diagram, the local active transport category in the
+  extension theorem has a final object. The local operadic colimit condition
+  therefore reduces to the displayed comparison map. Existence follows from
+  the existence part of the theorem.
+]
+
+#corollary(title:[Units in the Module Operad])[
+  If $q:cal(C)^times.o->cal(O)^times.o$ is a fibration of $oo$-operads and
+  $cal(O)^times.o$ is coherent, then
+
+  $
+    psi:cat("Mod")_a^(cal(O)) (cal(C))^times.o
+    ->cal(O)^times.o
+  $
+
+  has unit objects.
+]
+
+Every algebra is canonically a module over itself. Indeed, the equivalence
+
+$
+  Alg_(cal(O)) (cat("Mod")_a^(cal(O)) (cal(C)))
+  tilde.eq Alg_(cal(O)) (cal(C))^(a slash)
+$
+
+sends $id_a:a->a$ to the #emph[regular module], denoted $a_"reg"$. Write
+$overline(a)$ for the corresponding $cal(O)$-algebra object of the module
+operad.
+
+#proposition(title:[The Regular Module Is the Unit])[
+  Let $0$ be the zero object of the unital operad
+  $cal(O)^times.o$. For every $X in cal(O)^times.o$, a choice of edge
+  $0->X$ induces an edge
+
+  $
+    eta_X:overline(a)(0)->overline(a)(X)
+  $
+
+  in the module operad. This edge is an operadic $psi$-colimit diagram and
+  exhibits the regular module $overline(a)(X)$ as the $X$-unit object of
+  $cat("Mod")_a^(cal(O)) (cal(C))^times.o$.
+]
+
+#proofsketch[
+  The comparison in the one-edge test becomes the identity map
+  $a(X)->a(X)$. Hence $eta_X$ is an operadic $psi$-colimit. The construction
+  is independent of the chosen edge $0->X$ up to a contractible space of
+  choices because the total category of a unital operad is pointed.
+]
+
+#remark(title:[The Familiar One-Colored Case])[
+  If $a$ is a commutative algebra in a symmetric monoidal category, the
+  regular module is simply $a$ with action given by multiplication
+
+  $
+    a times.o a->a
+  $
+
+  When relative tensor products exist, it is the tensor unit of
+  $cat("Mod")_a (cal(C))$
+
+  $
+    a times_a m tilde.eq m
+  $
+]
+
+=== Colimits in the Fibers
+
+#theorem(title:[$kappa$-Small Colimits of Modules])[
+  Let $kappa$ be an uncountable regular cardinal. Suppose that
+  $cal(O)^times.o$ is a $kappa$-small coherent $oo$-operad and that
+
+  $
+    q:cal(C)^times.o->cal(O)^times.o
+  $
+
+  is an $cal(O)$-monoidal $oo$-category compatible with $kappa$-small
+  colimits. Then:
+
+  + the projection
+
+    $
+      psi:cat("Mod")_a^(cal(O)) (cal(C))^times.o
+      ->cal(O)^times.o
+    $
+
+    is a coCartesian fibration of $oo$-operads compatible with
+    $kappa$-small colimits;
+
+  + for every color $x in cal(O)$, the forgetful functor
+
+    $
+      U_(a,x):cat("Mod")_(a,x)^(cal(O)) (cal(C))->cal(C)_x
+    $
+
+    creates and detects $kappa$-small colimits.
+
+  Explicitly, if $K$ is $kappa$-small and
+
+  $
+    overline(p):K^triangle.r
+    ->cat("Mod")_(a,x)^(cal(O)) (cal(C))
+  $
+
+  is a cocone, then $overline(p)$ is a colimit diagram if and only if
+  $U_(a,x) compose overline(p)$ is a colimit diagram in $cal(C)_x$.
+]
+
+#proofsketch[
+  Compatibility gives the necessary operadic $q$-colimit cones in
+  $cal(C)^times.o$. Apply the extension theorem to lift them to the module
+  operad. For a diagram contained in the fiber over $x$, the local active
+  transport category has the identity of $x$ as a final object. Its
+  inclusion is left cofinal, so the local condition reduces to the
+  underlying cone in $cal(C)_x$. Compatibility with $kappa$-small colimits
+  then identifies an operadic $q$-colimit with the ordinary fiberwise
+  colimit. The one-simplex case supplies coCartesian lifts, and the same
+  argument in each variable proves compatibility of $psi$ with these
+  colimits.
+]
+
+#remark(title:[What “Created” Means])[
+  Begin with a diagram of modules and forget their actions. Take its colimit
+  in $cal(C)_x$. The theorem supplies an essentially unique module action on
+  that object for which the cocone maps are module maps. Thus the forgetful
+  functor does not merely preserve the colimit: it constructs it and detects
+  its universal property.
+]
+
+#remark(title:[Operadic versus Fiberwise Colimits])[
+  For a general diagram in the total module operad, the correct condition is
+  operadic: after adjoining any extra algebra inputs and applying any active
+  operation of $cal(O)$, the underlying cone must remain a colimit in the
+  appropriate fiber. When the diagram stays over one color and $q$ is
+  compatible with the relevant colimits, this extra test is automatic and
+  the theorem reduces it to an ordinary colimit in $cal(C)_x$.
+]
+
+=== Presentability of Module Categories
+
+#theorem(title:[Presentability of Modules])[
+  Let $cal(O)^times.o$ be a small coherent $oo$-operad, let
+
+  $
+    q:cal(C)^times.o->cal(O)^times.o
+  $
+
+  exhibit $cal(C)^times.o$ as a presentable $cal(O)$-monoidal
+  $oo$-category, and let $a in Alg_(cal(O)) (cal(C))$. Then
+
+  $
+    psi:cat("Mod")_a^(cal(O)) (cal(C))^times.o
+    ->cal(O)^times.o
+  $
+
+  exhibits the module operad as a presentable $cal(O)$-monoidal
+  $oo$-category.
+]
+
+#proofsketch[
+  The preceding theorem shows that $psi$ is coCartesian, compatible with all
+  small colimits, and that every fiber admits small colimits. It remains to
+  prove accessibility.
+
+  Fix a color $x$. Let $cal(E)_x subset.eq
+  (cal(O)^times.o)_(x slash)$ be the full subcategory spanned by semi-inert
+  arrows $x->y$, and let $cal(E)_(0,x)$ be the full subcategory spanned by
+  those arrows which are equivalences. The fixed algebra $a$ determines a
+  functor $a':cal(E)_(0,x)->cal(C)^times.o$. The semi-inert description of
+  modules identifies the fiber of modules at $x$ with the fiber over $a'$ of
+  the restriction functor
+
+  $
+    Phi_x:
+    Fun_(cal(O)^times.o) (cal(E)_x,cal(C)^times.o)
+    ->Fun_(cal(O)^times.o) (cal(E)_(0,x),cal(C)^times.o)
+  $
+
+  where only functors preserving the relevant inert morphisms are retained.
+  Since $cal(O)^times.o$ is small and the fibers of $cal(C)$ are
+  presentable, both functor categories are accessible and $Phi_x$ is an
+  accessible functor. Its fiber over $a'$ is therefore accessible. Combined
+  with the existence of small colimits, this makes
+  $cat("Mod")_(a,x)^(cal(O)) (cal(C))$ presentable. The argument applies to
+  every color, completing the proof.
+]
+
+#quote[
+  Under the standard presentability hypotheses, module categories inherit
+  both the colimits and the operadic tensor operations of the ambient
+  category; the forgetful functors compute those colimits fiber by fiber.
 ]

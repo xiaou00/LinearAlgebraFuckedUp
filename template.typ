@@ -523,6 +523,7 @@
 #let CAlg = $bold(sans("CAlg"))$
 #let Mon = $bold(sans("Mon"))$
 #let CMon = $bold(sans("CMon"))$
+#let Assoc = $bold(sans("Assoc"))^times.o$
 
 #let cat(name) = $bold(sans(name))$
 
